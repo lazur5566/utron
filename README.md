@@ -1,7 +1,7 @@
 ![utron logo](utron.png)
 
 # utron
-[![GoDoc](https://godoc.org/github.com/gernest/utron?status.svg)](https://godoc.org/github.com/gernest/utron) [![Coverage Status](https://coveralls.io/repos/gernest/utron/badge.svg?branch=master&service=github)](https://coveralls.io/github/gernest/utron?branch=master) [![Build Status](https://travis-ci.org/gernest/utron.svg)](https://travis-ci.org/gernest/utron) [![Join the chat at https://gitter.im/gernest/utron](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/gernest/utron?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [![Go Report Card](https://goreportcard.com/badge/github.com/gernest/utron)](https://goreportcard.com/report/github.com/gernest/utron)
+[![GoDoc](https://godoc.org/github.com/lazur5566/utron?status.svg)](https://godoc.org/github.com/lazur5566/utron) [![Coverage Status](https://coveralls.io/repos/lazur5566/utron/badge.svg?branch=master&service=github)](https://coveralls.io/github/lazur5566/utron?branch=master) [![Build Status](https://travis-ci.org/lazur5566/utron.svg)](https://travis-ci.org/lazur5566/utron) [![Join the chat at https://gitter.im/lazur5566/utron](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/lazur5566/utron?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [![Go Report Card](https://goreportcard.com/badge/github.com/lazur5566/utron)](https://goreportcard.com/report/github.com/lazur5566/utron)
 
 
 `utron` is a lightweight MVC framework in Go ([Golang](https://golang.org)) for building fast, scalable and robust database-driven web applications.
@@ -35,11 +35,11 @@ So, `utron` is my reimagining of lightweight MVC, that maintains the golang spir
 
 `utron` works with Go 1.4+
 
-     go get github.com/gernest/utron
+     go get github.com/lazur5566/utron
 
 For the Old API use
 
-	go get gopkg.in/gernest/utron.v1
+	go get gopkg.in/lazur5566/utron.v1
 
 # Tutorials
 

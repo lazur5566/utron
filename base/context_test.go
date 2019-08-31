@@ -6,7 +6,7 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"github.com/gernest/utron/config"
+	"github.com/lazur5566/utron/config"
 	"github.com/gorilla/mux"
 )
 

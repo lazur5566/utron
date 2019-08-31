@@ -5,7 +5,7 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"github.com/gernest/utron/controller"
+	"github.com/lazur5566/utron/controller"
 )
 
 var msg = "gernest"
