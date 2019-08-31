@@ -4,18 +4,20 @@ import (
 	"database/sql"
 	"errors"
 	"fmt"
+	"io"
 	"net/http"
 	"os"
 	"path/filepath"
 
 	"github.com/gernest/qlstore"
+	"github.com/gorilla/sessions"
 	"github.com/lazur5566/utron/config"
 	"github.com/lazur5566/utron/controller"
 	"github.com/lazur5566/utron/logger"
 	"github.com/lazur5566/utron/models"
 	"github.com/lazur5566/utron/router"
 	"github.com/lazur5566/utron/view"
-	"github.com/gorilla/sessions"
+
 	// load ql drier
 	_ "github.com/cznic/ql/driver"
 )
@@ -41,9 +43,9 @@ type App struct {
 
 // NewApp creates a new bare-bone utron application. To use the MVC components, you should call
 // the Init method before serving requests.
-func NewApp() *App {
+func NewApp(logOut io.Writer) *App {
 	return &App{
-		Log:    logger.NewDefaultLogger(os.Stdout),
+		Log:    logger.NewDefaultLogger(logOut),
 		Router: router.NewRouter(),
 		Model:  models.NewModel(),
 	}
@@ -51,8 +53,8 @@ func NewApp() *App {
 
 // NewMVC creates a new MVC utron app. If cfg is passed, it should be a directory to look for
 // the configuration files. The App returned is initialized.
-func NewMVC(cfg ...string) (*App, error) {
-	app := NewApp()
+func NewMVC(logOut io.Writer, cfg ...string) (*App, error) {
+	app := NewApp(logOut)
 	if len(cfg) > 0 {
 		app.SetConfigPath(cfg[0])
 	}
@@ -129,7 +131,7 @@ func (a *App) init() error {
 	}
 
 	a.Router.Options = a.options()
-	a.Router.LoadRoutes(a.ConfigPath) // Load a routes file if available.	
+	a.Router.LoadRoutes(a.ConfigPath) // Load a routes file if available.
 	a.isInit = true
 
 	// In case the StaticDir is specified in the Config file, register

@@ -1,12 +1,15 @@
 package app
 
 import (
+	"fmt"
+	"io"
 	"net/http"
 	"net/http/httptest"
 	"os"
 	"path/filepath"
 	"strings"
 	"testing"
+	"time"
 
 	"github.com/lazur5566/utron/config"
 	"github.com/lazur5566/utron/controller"
@@ -64,7 +67,14 @@ func (s *SimpleMVC) Hello() {
 }
 
 func TestMVC(t *testing.T) {
-	app, err := NewMVC("fixtures/mvc")
+	logName := fmt.Sprintf("log_%s.txt", time.Now().Format("20060102150405"))
+	f, err := os.OpenFile(logName, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, 0666)
+	if err != nil {
+		panic(err)
+	}
+	defer f.Close()
+	output := io.MultiWriter(os.Stdout, f)
+	app, err := NewMVC(output, "fixtures/mvc")
 	if err != nil {
 		t.Skip(err)
 	}
@@ -85,9 +95,16 @@ func TestMVC(t *testing.T) {
 }
 
 func TestApp(t *testing.T) {
-	app := NewApp()
+	logName := fmt.Sprintf("log_%s.txt", time.Now().Format("20060102150405"))
+	f, err := os.OpenFile(logName, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, 0666)
+	if err != nil {
+		panic(err)
+	}
+	defer f.Close()
+	output := io.MultiWriter(os.Stdout, f)
+	app := NewApp(output)
 	// Set not found handler
-	err := app.SetNotFoundHandler(http.HandlerFunc(sampleDefault))
+	err = app.SetNotFoundHandler(http.HandlerFunc(sampleDefault))
 	if err != nil {
 		t.Error(err)
 	}
