@@ -25,7 +25,7 @@ type DefaultLogger struct {
 // NewDefaultLogger returns a default logger writing to out
 func NewDefaultLogger(out io.Writer) Logger {
 	d := &DefaultLogger{}
-	d.Logger = log.New(out, "", log.LstdFlags)
+	d.Logger = log.New(out, "", log.LstdFlags|log.Llongfile)
 	return d
 }
 
